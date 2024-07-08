@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Text</title>
+    <style>
+        @font-face {
+            font-family: 'MotleyForces';
+            src: url('MotleyForcesRegular.ttf') format('truetype');
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #90ee90;
+            color: white;
+            font-size: 5rem;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'MotleyForces', sans-serif;
+            text-transform: uppercase;
+        }
+
+        #title {
+            font-size: 2rem;
+            margin-top: 1rem;
+        }
+
+        canvas {
+            background: white;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        window.onload = function() {
+            const text = getQueryParameter('text');
+            if (text) {
+                const qr = new QRious({
+                    element: document.getElementById('qr-code'),
+                    value: text,
+                    size: 300,
+                    background: '#90ee90',
+                    foreground: 'white'
+                });
+                document.getElementById('title').textContent = text;
+            } else {
+                document.getElementById('title').textContent = 'No text provided';
+            }
+        }
+    </script>
+</head>
+<body>
+    <canvas id="qr-code"></canvas>
+    <div id="title"></div>
+</body>
+</html>
