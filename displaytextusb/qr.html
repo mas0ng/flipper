@@ -37,13 +37,17 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
     <script>
-        function getQueryParameter(name) {
+        function getQueryParametername(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
+        function getQueryParameterqrname(qrname) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(qrname);
+        }
 
         window.onload = function() {
-            const text = getQueryParameter('text');
+            const text = getQueryParametername('text');
             if (text) {
                 const qr = new QRious({
                     element: document.getElementById('qr-code'),
@@ -52,7 +56,7 @@
                     background: '#90ee90',
                     foreground: 'white'
                 });
-                document.getElementById('title').textContent = text;
+                document.getElementById('title').textContent = getQueryParameterqrname('text');
             } else {
                 document.getElementById('title').textContent = 'No text provided';
             }
