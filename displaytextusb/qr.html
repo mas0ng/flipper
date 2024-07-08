@@ -43,17 +43,19 @@
         }
 
         window.onload = function() {
-            const text = getQueryParameter('text');
-            if (text) {
+            const qrText = getQueryParameter('text');
+            const displayText = getQueryParameter('displaytext');
+            if (qrText) {
                 const qr = new QRious({
                     element: document.getElementById('qr-code'),
-                    value: text,
+                    value: qrText,
                     size: 300,
                     background: '#90ee90',
                     foreground: 'white'
                 });
-                const text = getQueryParameter('qrname');
-                document.getElementById('title').textContent = qrname;
+            }
+            if (displayText) {
+                document.getElementById('title').textContent = displayText;
             } else {
                 document.getElementById('title').textContent = 'No text provided';
             }
