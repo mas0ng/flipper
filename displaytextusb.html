@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Text</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #90ee90;
+            color: white;
+            font-size: 5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        window.onload = function() {
+            const text = getQueryParameter('text');
+            if (text) {
+                document.body.textContent = text;
+            } else {
+                document.body.textContent = 'No text provided';
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
