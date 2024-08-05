@@ -1,10 +1,9 @@
 @echo off
-:: Collect system information
-systeminfo > sysinfo.txt
-ipconfig >> sysinfo.txt
+:: Collect important system information
+systeminfo | findstr /C:"OS Name" /C:"OS Version" /C:"System Manufacturer" /C:"System Model" /C:"Processor(s)" /C:"Total Physical Memory" /C:"Available Physical Memory" > important_sysinfo.txt
 
 :: Send the data to the Replit server
-curl -X POST -H "Content-Type: text/plain" --data-binary "@sysinfo.txt" https://cfb53da8-4871-4cd0-af96-095c708ad0f5-00-1129qpina38jq.picard.replit.dev/
+curl -X POST -H "Content-Type: text/plain" --data-binary "@important_sysinfo.txt" https://your-repl-name.repl.co/
 
 :: Clean up
-del sysinfo.txt
+del important_sysinfo.txt
